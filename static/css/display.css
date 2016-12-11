@@ -1,0 +1,802 @@
+@keyframes backgroundAnim{
+  from {
+    transform: translate3d(0,-25%,0);
+  }
+  to {
+    transform: translate3d(0,-50%,0);
+  }
+}
+
+@keyframes mainMenuShadow{
+  from{
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.8);
+  }
+    to{
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+}
+
+@keyframes itemMenuBackground{
+  from{
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+    to{
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+}
+
+@keyframes itemMenuShadow{
+  from{
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.8);
+  }
+    to{
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+}
+
+*
+{
+font-family: "Open Sans", sans-serif;
+cursor: none;
+}
+
+.screen{
+  position: absolute;
+  top: 0;
+  left: 0;
+	width: 100vw;
+	height: 100vh;
+  overflow: hidden;
+}
+
+.lightbox{
+  background-color: rgba(0,23,45,0.9);
+  color: white;
+  font-family: "Open Sans", sans-serif;
+}
+
+.lightbox .lightboxContent{
+  position: absolute;
+  left: 20vw;
+  top: 50vh;
+  transform: translateY(-50%);
+  width: 60vw;
+}
+
+.lightbox h1{
+  font-size: 80px;
+  font-weight: lighter;
+}
+
+.lightbox .icon{
+  padding-top: 10px;
+  padding-right: 30px;
+  float: left;
+}
+
+.lightbox .icon i{
+  font-size: 70px;
+}
+
+.lightbox .content{
+  clear: both;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  font-size: 30px;
+  text-align: justify;
+}
+
+.lightbox nav{
+  text-align: right;
+}
+
+.lightbox nav .button{
+  display: inline-block;
+  padding: 5px;
+  font-size: 30px;
+  border-radius: 5px;
+  border: solid 1px white;
+}
+
+.lightbox nav .button i{
+    position: relative;
+    top: 2px;
+}
+
+.lightbox nav .button.active{
+    animation-name: itemMenuBackground;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+}
+
+.globalBackground
+{
+  z-index: -1;
+  background-color: #00172D;
+}
+
+.globalBackground img
+{
+  transform: translate3d(-5%,-10%,0);
+  /*animation-name: backgroundAnim;
+  animation-duration: 60s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;*/
+  width: 110%;
+  height: auto;
+  filter: blur(10px);
+  -webkit-filter: blur(10px);
+  transition-duration: 1s;
+  transition-property: opacity;
+  transition-timing-function: linear;
+  opacity: 1;
+}
+
+.globalBackground img.hidden{
+  opacity: 0;
+}
+
+.remoteControl{
+  position: absolute;
+  top: 1vh;
+  left: 1vh;
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+}
+
+.time{
+  position: absolute;
+  top: 1vh;
+  right: 1vh;
+  height: 80px;
+  line-height: 80px;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 30px;
+  text-align: center;
+  width: 100px;
+  z-index: 100;
+  font-family: "Open Sans", sans-serif;
+  font-weight: lighter;
+}
+
+.remoteControl .qr, .remoteControl .remotes{
+  width: 70px;
+  height: 70px;
+  padding: 5px;
+  line-height: 70px;
+  text-align: center;
+  font-size: 30px;
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: bolder;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 2px;
+  transition-duration: 0.5s;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0,.5,.5,1);
+}
+
+.remoteControl .remotes i{
+  font-size: 30px;
+  position: relative;
+  top: 3px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.remoteControl .qr{
+  background-color: white;
+}
+
+.remoteControl .qr.hidden, .remoteControl .showed{
+  transform: translate3d(0,-100%,0);
+}
+
+.mainScreen{
+  background: radial-gradient(ellipse at center, rgba(3,42,56,0.6) 0%,rgba(3,42,56,1) 70%,rgba(3,42,56,1) 100%);
+}
+
+.globalNav{
+  width: 80%;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  z-index: 100;
+  line-height: 60px;
+}
+
+.globalNav .path .label{
+  font-size: 45px;
+  font-family: "Open Sans";
+  font-weight: lighter;
+}
+
+.globalNav .path .separator{
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.globalNav .path *{
+  color: rgba(255, 255, 255, 0.8);
+  margin-right: 20px;
+}
+
+.globalNav .path i{
+  position: relative;
+  top: 10px;
+  font-size: 55px;
+}
+
+.globalNav .path .separator{
+  font-size: 55px;
+  font-weight: bold;
+}
+
+.mainMenu{
+  width: 100%;
+  height: 100vh;
+}
+
+.menuWrapper{
+  transition-duration: 0.5s;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0,.5,.5,1);
+}
+
+.menuWrapper .menuSection .moviesWrapper, .menuWrapper .menuSection .videosWrapper{
+  transition-duration: 0.5s;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0,.5,.5,1);
+}
+
+.menuWrapper .menuSection h1, .menuWrapper .menuSection > h2{
+  width: 90%;
+  padding-left: 10%;
+  padding-bottom: 25px;
+  padding-top: 25px;
+  font-size: 75px;
+  font-weight: lighter;
+  font-family: "Open Sans", sans-serif;
+  color: rgba(255, 255, 255, 0.8);
+  transition-duration: 0.3s;
+  transition-property: text-shadow;
+  transition-timing-function: linear;
+}
+
+.menuWrapper .menuSection.welcome h1{
+  font-size: 150px;
+}
+
+.menuWrapper .menuSection > h2{
+  font-size: 50px;
+  margin-top: -50px;
+}
+
+
+.menuWrapper .menuSection .sectionContent{
+  width: 100%;
+  padding-left: 10%;
+  padding-right: 10%;
+  position: relative;
+  left: -10%;
+  box-shadow: 0 0 15px black inset;
+  border-bottom: solid rgba(255, 255, 255, 0.1) 1px;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition-duration: 0.5s;
+  transition-property: max-height;
+  transition-timing-function: cubic-bezier(0,.5,.5,1);
+  white-space: nowrap;
+}
+
+.menuWrapper .menuSection:not(.active) .sectionContent{
+  /*max-height: 0 !important;
+  overflow: hidden;
+  border: none;*/
+}
+
+.menuWrapper .menuSection .sectionContent.movieSection{
+  max-height: 222px;
+}
+
+.menuWrapper .menuSection .sectionContent.videoSection{
+  max-height: 135px;
+}
+
+.menuWrapper .menuSection .remoteWrapper {
+  width: 50%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Open Sans", sans-serif;
+}
+
+.menuWrapper .menuSection .remoteWrapper .qr{
+  padding: 20px;
+  background-color: white;
+  width: 250px;
+  color: black;
+  border-radius: 2px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.menuWrapper .menuSection .remoteWrapper .qrUrl{
+  text-align: center;
+  padding-top: 10px;
+  font-size: 20px;
+}
+
+.menuWrapper .menuSection .remoteWrapper .description{
+  width: calc(100% - 310px);
+  margin-left: 20px;
+  text-align: justify;
+  font-weight: lighter;
+  vertical-align: middle;
+  display: inline-block;
+  white-space: normal;
+}
+
+.menuWrapper .menuSection .remoteWrapper .description p{
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+
+.menuWrapper .menuSection .remoteWrapper .description p strong{
+  font-weight: bolder;
+}
+
+.menuSection.active h1,.menuSection.active > h2 {
+  animation-name: mainMenuShadow;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+  animation-timing-function: ease-in-out;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+.menuWrapper .videoSec{
+  clear: both;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.menuWrapper .videoSec .videoThumbail{
+  width: 355px;
+  height: 200px;
+  display: inline-block;
+  margin-left: 10vw;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.menuWrapper .videoSec .videoThumbail img{
+  width: 100%;
+  height: auto;
+}
+
+.menuWrapper .videoSec h1{
+  width: calc(80vw - 400px);
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.moviesMenu{
+  margin-top: 15vh;
+  max-height: 85vh;
+}
+
+.movie, .video{
+  border: solid rgba(255, 255, 255, 0.8) 1px;
+  width: 150px;
+  overflow: hidden;
+  border-radius: 2px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 10px;
+  transition-duration: 0.2s;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0,.5,.5,1);
+  z-index: 0;
+  position: relative;
+}
+
+.video{
+  width: 200px;
+}
+
+.movie .poster{
+  overflow: hidden;
+  width: 150px;
+  height: 200px;
+}
+
+.video .poster{
+  overflow: hidden;
+  width: 200px;
+  height: 113px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.video .poster img{
+  height: 100%;
+}
+
+.movie .infos, .video .infos{
+  background-color: rgba(0, 0, 0, 0.8);
+  color: rgba(255, 255, 255, 0.8);
+  font-family: "Open Sans", sans-serif;
+  width: 90%;
+  max-height: 0;
+  padding-left: 5%;
+  padding-right: 5%;
+  white-space: normal;
+}
+
+.movie.active, .video.active{
+  transform: scale(1.5) translate3d(0,0,0);
+  animation-name: itemMenuShadow;
+  animation-duration: 5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+  z-index: 10;
+}
+
+.movie.active .infos, .video.active .infos{
+  max-height: 100px;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  transition-delay: 1s;
+  transition-duration: 0.5s;
+  transition-property: max-height padding-top padding-bottom;
+  transition-timing-function: cubic-bezier(0,.5,.5,1);
+}
+
+.movie .infos h2{
+  font-size: 18px;
+  font-weight: lighter;
+}
+
+.movie .infos h3{
+  padding-top: 5px;
+  font-size: 15px;
+  text-align: right;
+}
+
+.movie .poster.noImage{
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.movie .poster.noImage div{
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 200px;
+  transform: rotate(25deg) translate3d(0,0,0);
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bolder;
+}
+
+.video .poster.noImage div{
+  width: 200px;
+  font-size: 30px;
+  line-height: 116px;
+  font-weight: lighter;
+  color: white;
+  white-space: normal;
+  font-family: "Open Sans", sans-serif;
+}
+
+.movie .poster img{
+  width: 150px;
+  height: auto;
+}
+
+.movieDetails{
+  width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+  color: rgba(255,255,255, 0.8);
+  font-family: "Open Sans", sans-serif;
+}
+
+.movieDetails .screenshots{
+  width: 100%;
+  height: 175px;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.movieDetails .screenshots img{
+  height: 175px;
+  width: auto;
+  display: inline-block;
+  padding-right: 5px;
+}
+
+.movieDetails .screenshots h1{
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 175px;
+  font-size: 50px;
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  background: -moz-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.3) 22%, rgba(0,0,0,0) 60%, rgba(0,0,0,0) 100%);
+  background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.3) 22%,rgba(0,0,0,0) 60%,rgba(0,0,0,0) 100%);
+  background: radial-gradient(ellipse at center,  rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.3) 22%,rgba(0,0,0,0) 60%,rgba(0,0,0,0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99000000', endColorstr='#00000000',GradientType=1 );
+}
+
+.movieDetails .movieScrollWrapper{
+    transition-duration: 0.5s;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0,.5,.5,1);
+}
+
+.movieDetails .poster{
+  width: 25%;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8);
+}
+
+.movieDetails .poster img{
+  width: 100%;
+}
+
+
+.movieDetails .title{
+  display: inline-block;
+  vertical-align: middle;
+  width: 70%;
+  margin-left: 5%;
+}
+
+.movieDetails .noPoster .title{
+  width: 100%;
+  margin: 0;
+}
+
+.movieDetails .title h1{
+  font-size: 4vw;
+  font-weight: lighter;
+  margin-bottom: 25px;
+}
+
+.movieDetails .noPoster .title h1{
+  text-align: center;
+  font-size: 8vw;
+  font-weight: lighter;
+}
+
+.movieDetails .title h2{
+  text-align: right;
+  font-weight: normal;
+  font-size: 1.5vw;
+  margin-bottom: 25px;
+}
+
+.movieDetails .title h2 .public{
+  float: left;
+  max-width: 50%;
+  text-align: left;
+}
+
+.movieDetails .title h2 .date{
+  font-weight: bold;
+  margin-left: 30px;
+}
+
+.movieDetails .title .synopsis{
+  clear: both;
+  text-align: justify;
+  font-size: 1.5vw;
+  margin-bottom: 30px;
+  margin-bottom: 30px;
+}
+
+.movieDetails .title .types{
+  text-align: right;
+  font-size: 1.5vw;
+}
+
+.movieDetails .title .types span:not(:nth-child(1))::before{
+  content: "/";
+  margin-left: 10px;
+  margin-right: 10px;
+  font-weight: bolder;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.movieDetails .title .synopsis a{
+  color: inherit;
+  text-decoration: none;
+}
+
+.movieDetails nav{
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+}
+
+.movieDetails .movieButton{
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 2.5vw;
+  border: solid 1px rgba(255, 255, 255, 0.8);
+  border-radius: 2px;
+  transition-duration: 0.5s;
+  transition-property: background-color;
+  transition-timing-function: cubic-bezier(0,.5,.5,1);
+}
+
+.movieDetails .movieButton.active{
+  animation-name: itemMenuBackground;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+
+}
+
+.movieDetails article{
+  padding-bottom: 10vh;
+}
+
+.movieDetails article h3{
+  font-size: 50px;
+  margin-bottom: 30px;
+  font-weight: lighter;
+  transition-duration: 0.5s;
+  transition-property: text-shadow;
+  transition-timing-function: cubic-bezier(0,.5,.5,1);
+}
+
+.movieDetails article.active h3{
+animation-name: mainMenuShadow;
+animation-duration: 5s;
+animation-timing-function: ease-in-out;
+animation-iteration-count: infinite;
+animation-direction: alternate-reverse;
+}
+
+.movieDetails article .content{
+  font-size: 1.5vw;
+}
+
+.movieDetails article .content.gallery{
+  text-align: center;
+}
+
+.movieDetails article .content.gallery img{
+  width: calc(33.333333333% - 20px);
+  margin-bottom: 20px;
+  margin-right: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8);
+}
+
+.movieDetails article .content.center{
+  text-align: center;
+}
+
+.movieDetails article .actor{
+  padding: 10px;
+  display: inline-block;
+}
+
+.movieDetails article .buttonNav{
+  text-align: center;
+}
+
+.movieDetails article .actor:first{
+  padding-left: none;
+}
+
+.player{
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  transition-duration: 0.5s;
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0,.5,.5,1);
+}
+
+.player video{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate3d(-50%,-50%,0);
+}
+
+.player.showed{
+  opacity: 1;
+}
+
+.player nav{
+  width: 100%;
+  height: 10vh;
+  position: absolute;
+  padding-bottom: 20vh;
+  bottom: 0;
+  line-height: 20vh;
+  font-size: 10vh;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  left: 0;
+  z-index: 100;
+  opacity: 1;
+    transition-duration: 0.5s;
+    transition-property: text-shadow;
+    transition-timing-function: linear;
+}
+
+.player nav.hidden{
+  opacity: 0;
+}
+
+.player nav .background{
+  background: rgba(0,0,0,0.5);
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.player span.button{
+  transition-duration: 0.5s;
+  transition-property: text-shadow;
+  transition-timing-function: linear;
+  overflow: hidden;
+}
+
+.player span.button.active{
+  animation-name: mainMenuShadow;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+}
+
+.player nav i{
+  font-size: 10vh;
+  position: relative;
+  top: 2vh;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.player nav .progress{
+  width: 100%;
+  height: 5px;
+  position: relative;
+}
+
+.player nav .progress .bar{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.remoteControl, .time, .player nav .background{
+  transition-duration: 0.5s;
+  transition-property: opacity;
+  transition-timing-function: linear;
+}
+
+.remoteControl.hidden, .time.hidden, .player nav .background.hidden{
+  opacity: 0;
+}

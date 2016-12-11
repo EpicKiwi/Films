@@ -1,0 +1,54 @@
+<div class="movieDetails">
+  <div class="movieScrollWrapper" style="transform: translate3d(0,calc(50vh - {{menu.menus.movieScroll.getHeightOffset()}}px),0)">
+    <header fl-menu="movieScroll" ng-class="{noPoster:!movie.image}" fl-item="0" fl-selected="true">
+      <div class="poster" ng-if="movie.image">
+        <img ng-src="/static/posters/{{movie.image}}"/>
+      </div><div class="title">
+        <h1>{{movie.name}}</h1>
+        <h2>
+          <span class="public" ng-if="movie.public">{{movie.public}}</span>
+          {{movie.realisator}}
+          <span class="date" ng-if="movie.outDate" >{{movie.outDate|date:'yyyy'}}</span>
+        </h2>
+        <div class="synopsis" ng-bind-html="movie.synopsis">
+        </div>
+        <div class="types">
+          <span ng-repeat="type in movie.type">{{type}}</span>
+        </div>
+      </div>
+    </header>
+    <nav fl-menu="movieScroll" fl-item="1">
+      <span fl-menu="movieAction" fl-item="0" fl-url="/player/movie/{{movie['_id']}}" class="movieButton" ng-if="video.path && video.status == 'ready'">Visionner <span ng-if="movie.duration">({{secToString(movie.duration)}})</span></span>
+      <span fl-menu="movieAction" fl-item="0" class="movieButton" ng-if="video.path && video.status == 'notConverted'">Convertir pour la lecture</span>
+      <span fl-menu="movieAction" fl-item="0" class="movieButton" ng-if="video.path && video.status == 'waiting'">En attente de convertion</span>
+      <span fl-menu="movieAction" fl-item="0" class="movieButton" ng-if="video.path && video.status == 'converting'">Traitement en cours</span>
+      <span fl-menu="movieAction" fl-item="0" class="movieButton" ng-if="!video.path">Aucune video associée</span>
+    </nav>
+    <article fl-menu="movieScroll" fl-item="2">
+      <h3>Images associés</h3>
+      <div class="content gallery">
+          <img ng-repeat="screenshot in video.screenshots" ng-src="{{screenshot}}"/>
+      </div>
+    </article>
+    <article fl-menu="movieScroll" fl-item="3" ng-if="movie.actors.length > 0">
+      <h3>Casting</h3>
+      <div class="content">
+        <span ng-repeat="actor in movie.actors" class="actor">{{actor}}</span>
+      </div>
+    </article>
+    <article fl-menu="movieScroll" fl-item="3" ng-if="!movie.allocineId">
+      <h3>Je ne sais que dire</h3>
+      <div class="content">
+        Le film {{movie.name}} ne semble pas avoir d'identifiant Allocine. Cet identifiant permet de recupèrer beaucoup d'informations sur un bon nombre de films différents. Vous pouvez ajouter cet identifant en selectionnant "Ajouter des infos" dans le menu ci dessous.
+      </div>
+    </article>
+    <article fl-menu="movieScroll" fl-item="4">
+      <h3>Actions</h3>
+      <div class="content buttonNav">
+        <span fl-menu="movieActionMore" fl-item="0" class="movieButton">Supprimer film</span>
+        <span fl-menu="movieActionMore" fl-item="1" class="movieButton">Supprimer film + video</span>
+        <span fl-menu="movieActionMore" fl-item="2" class="movieButton" ng-if="!movie.allocineId">Rechercher des infos</span>
+      </div>
+    </article>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<span class="videosMenu">
+
+  <div class="menuWrapper" style="transform: translate3d(0,calc(50vh - {{menu.menus.videosMenu.getHeightOffset()}}px),0)">
+
+    <div class="menuSection welcome" fl-menu="videosMenu" fl-item="-1" fl-selected="true">
+      <h1>Videos</h1>
+        <h2>Affichage de {{videoNumber}} video<span ng-if="videoNumber > 1" >s</span> dans {{notFilmVideos().length}} dossier<span ng-if="videos.length > 1">s</span></h2>
+    </div>
+    <div class="menuSection" ng-repeat="folder in videos|orderBy:'directory'" data-folder="{{folder.directory}}" fl-menu="videosMenu" fl-item="$index">
+      <h1>{{folder.directory}}</h1>
+      <div class="sectionContent videoSection">
+        <div class="videosWrapper" style="transform: translate3d({{150-menu.menus['videosIn'+folder.directory].getWidthOffset()}}px,0,0)">
+        <div class="video" ng-repeat="video in folder.videos|orderBy:'name'" fl-url="/video/{{video['_id']}}" fl-menu="videosIn{{folder.directory}}" fl-item="$index">
+          <div class="poster" ng-class="{noImage:video.screenshots.length < 1}">
+            <img ng-src="{{video.screenshots[0]}}" ng-if="video.screenshots.length > 0"/>
+            <div ng-if="video.screenshots.length < 1">{{getVideoName(video)}}</div>
+          </div>
+          <div class="infos">
+            <h2>{{getVideoName(video)}}</h2>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+  </div>
+
+</span>

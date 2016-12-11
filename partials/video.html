@@ -1,0 +1,32 @@
+<div class="movieDetails videoDetails">
+  <div class="movieScrollWrapper" style="transform: translate3d(0,calc(50vh - {{menu.menus.videoScroll.getHeightOffset()}}px),0)">
+    <header fl-menu="videoScroll" ng-class="{noPoster:!movie.image}" fl-item="0" fl-selected="true">
+      <div class="screenshots">
+        <img ng-repeat="screenshot in video.screenshots" ng-src="{{screenshot}}"/>
+          <h1>{{getVideoName(video)}}</h1>
+      </div>
+    </header>
+    <nav fl-menu="videoScroll" fl-item="1">
+      <span fl-menu="videoAction" fl-item="0" fl-url="/player/video/{{video['_id']}}" class="movieButton" ng-if="video.path && video.status == 'ready'">Visionner</span>
+      <span fl-menu="videoAction" fl-item="0" class="movieButton" ng-if="video.path && video.status == 'notConverted'" fl-action="convertVideo">Convertir pour la lecture</span>
+      <span fl-menu="videoAction" fl-item="0" class="movieButton" ng-if="video.path && video.status == 'waiting'">En attente de convertion</span>
+      <span fl-menu="videoAction" fl-item="0" class="movieButton" ng-if="video.path && video.status == 'converting'">Traitement en cours</span>
+    </nav>
+    <article>
+      <div class="content center">
+        <p>Chargée depuis {{video.path}}</p>
+      </div>
+    </article>
+    <article fl-menu="videoScroll" fl-item="3">
+      <h3>Images associés</h3>
+      <div class="content gallery">
+          <img ng-repeat="screenshot in video.screenshots" class="screenshotGalleryImage" ng-src="{{screenshot}}"/>
+      </div>
+    </article>
+    <article fl-menu="videoScroll" fl-item="4">
+      <div class="content buttonNav">
+        <span fl-menu="videoActionMore" fl-item="0" fl-action="addToFilms" class="movieButton">Ajouter comme film</span>
+      </div>
+    </article>
+  </div>
+</div>

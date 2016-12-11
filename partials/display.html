@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Display</title>
+    <link rel="stylesheet" href="/static/css/fonts.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/static/css/reset.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/static/css/icons.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/static/css/display.css" media="screen" title="no title" charset="utf-8">
+  </head>
+  <body ng-app="films" ng-controller="mainController" ng-keydown="onKeyPress($event)">
+    <div class="screen globalBackground">
+      <img ng-class="{hidden:background.hidden}" ng-src="{{background.path}}"/>
+    </div>
+    <!--<nav class="globalNav">
+      <div class="path">
+        <i class="material-icons">home</i><span ng-repeat="element in path.states" ><span class="separator">/</span><span class="label">{{element}}</span></span>
+      </div>-->
+    </nav>
+    <div class="screen mainScreen">
+      <section ng-view>
+      </section>
+    </div>
+    <div class="remoteControl" ng-class="{hidden:display.hideInfo}">
+      <div class="qr" ng-class="{hidden:connectedRemotes>0}">
+        <qrcode version="3" error-correction-level="M" size="70" data="http://{{display.serverIp}}/remote/{{display.id}}"></qrcode>
+      </div>
+      <div class="remotes" ng-class="{showed:connectedRemotes>0}">
+        {{connectedRemotes}}<i class="material-icons">settings_remote</i>
+      </div>
+    </div>
+    <div class="time" ng-class="{hidden:display.hideInfo}">
+      {{time.clock|date:'HH:mm'}}
+    </div>
+    <div class="screen lightbox" ng-show="lightbox.showed">
+      <div class="lightboxContent">
+        <div class="icon" ng-if="lightbox.icon">
+          <i class="material-icons">{{lightbox.icon}}</i>
+        </div>
+        <h1>{{lightbox.title}}</h1>
+        <div class="content">
+          {{lightbox.content}}
+        </div>
+        <nav>
+          <span class="button" fl-menu="lightbox" fl-item="0" fl-action="lightbox.hide" fl-selected="true"><i class="material-icons">arrow_back</i> Retour</span>
+        </nav>
+      </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/static/lib/jquery-2.1.4.min.js" charset="utf-8"></script>
+    <script src="/static/lib/angular.min.js" charset="utf-8"></script>
+    <script src="/static/lib/angular-route.min.js" charset="utf-8"></script>
+    <script src="/static/lib/angular-resource.min.js" charset="utf-8"></script>
+    <script src="/static/lib/angular-sanitize.min.js" charset="utf-8"></script>
+    <script src="/static/lib/qrcode-generator.js" charset="utf-8"></script>
+    <script src="/static/lib/ngsocket.min.js" charset="utf-8"></script>
+    <script src="/static/lib/ngQr.js" charset="utf-8"></script>
+    <script src="/static/js/displayController.js" charset="utf-8"></script>
+    <script src="/static/js/displayDirective.js" charset="utf-8"></script>
+  </body>
+</html>

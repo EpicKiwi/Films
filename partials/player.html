@@ -1,0 +1,12 @@
+<div class="player" ng-class="{showed:videoId}">
+  <fl-video src="{{videoId}}" pause="paused" fast-foward="fastf" fast-rewind="fastb" progress="progress($event)" ended="ended()" autoplay>
+  </fl-video>
+  <nav>
+    <div class="background" ng-class="{hidden:display.hideInfo}">
+      <div class="progress"><div class="bar" style="width:{{progressTime}}%"></div></div>
+      <span class="button" fl-menu="playerControl" fl-action="backward" fl-item="-1" ><i class="material-icons">fast_rewind</i></span>
+      <span class="button" fl-menu="playerControl" fl-action="pause" fl-item="0" fl-selected="true"><i class="material-icons" ng-if="paused">play_arrow</i><i class="material-icons" ng-if="!paused">pause</i></span>
+      <span class="button" fl-menu="playerControl" fl-action="foward" fl-item="1"><i class="material-icons">fast_forward</i></span>
+    </div>
+  </nav>
+</div>

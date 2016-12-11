@@ -1,0 +1,10 @@
+{
+  "name": "Films",
+  "description": "Un mediacenter avec NodeJs",
+  "version": "0.0.1",
+  "require": [],
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "fluent-ffmpeg": "^2.0.1"
+  }
+}

@@ -1,0 +1,81 @@
+<span class="mainMenu">
+  <div class="menuWrapper" style="transform: translate3d(0,calc(50vh - {{menu.menus.main.getHeightOffset()}}px),0)">
+
+
+    <div class="menuSection welcome" fl-menu="main" fl-item="-1" fl-selected="true">
+      <h1>Bienvenue</h1>
+        <h2>Qu'allons nous regarder aujourd'hui ?</h2>
+    </div>
+
+    <div class="menuSection" fl-menu="main" fl-item="0">
+      <h1>Films</h1>
+      <div class="sectionContent movieSection">
+          <div class="moviesWrapper" style="transform: translate3d({{150-menu.menus.movies.getWidthOffset()}}px,0,0)">
+          <div class="movie" ng-repeat="movie in movies|orderBy:'name'" fl-menu="movies" fl-url="/movie/{{movie['_id']}}" fl-item="$index">
+            <div class="poster" ng-class="{noImage:!movie.image}">
+              <img ng-src="/static/posters/{{movie.image}}" ng-if="movie.image"/>
+              <div ng-if="!movie.image">{{movie.name[0]}}</div>
+            </div>
+            <div class="infos">
+              <h2>{{movie.name}}</h2>
+              <h3>{{movie.realisator}}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--<div class="menuSection" fl-menu="main" fl-item="1">
+      <h1>Séries</h2>
+    </div>-->
+
+    <!--<div class="menuSection" fl-menu="main" fl-item="2">
+      <h1>Musique</h2>
+    </div>-->
+
+    <div class="menuSection" fl-menu="main" fl-item="3" >
+      <h1>Videos</h2>
+      <div class="sectionContent videoSection">
+        <div class="videosWrapper" style="transform: translate3d({{150-menu.menus.videos.getWidthOffset()}}px,0,0)">
+        <div class="video" ng-repeat="video in videos|filter:notAfilm|limitTo:10|orderBy:getVideoName" fl-url="/video/{{video['_id']}}" fl-menu="videos" fl-item="$index">
+          <div class="poster" ng-class="{noImage:video.screenshots.length < 1}">
+            <img ng-src="{{video.screenshots[0]}}" ng-if="video.screenshots.length > 0"/>
+            <div ng-if="video.screenshots.length < 1">{{getVideoName(video)}}</div>
+          </div>
+          <div class="infos">
+            <h2>{{getVideoName(video)}}</h2>
+          </div>
+        </div>
+        <div class="video" fl-menu="videos" fl-url="/video" fl-item="16">
+          <div class="poster noImage">
+            <div>Plus de videos</div>
+          </div>
+          <div class="infos">
+            <h2>Afficher toutes les videos disponibles</h2>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <!--<div class="menuSection" fl-menu="main" fl-item="4">
+      <h1>Paramètres</h2>
+    </div>-->
+
+    <div class="menuSection" fl-menu="main" fl-item="5">
+      <h1>Télécommande</h1>
+      <div class="sectionContent" ng-show="display.trusted">
+        <div class="remoteWrapper">
+          <div class="qr">
+            <qrcode version="3" error-correction-level="M" size="250" data="http://{{display.serverIp}}/remote/{{display.id}}"></qrcode>
+            <p class="qrUrl">{{display.serverIp}}/remote/{{display.id}}</p>
+          </div><div class="description">
+            <p>Connectez une télécommande a votre téléviseur pour permettre une utilisation plus ergonomique.</p>
+            <p>Il y a actuellement <strong>{{connectedRemotes}} télécommande<span ng-if="connectedRemotes>1">s</span></strong> connèctée<span ng-if="connectedRemotes>1">s</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</span>

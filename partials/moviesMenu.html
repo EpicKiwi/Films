@@ -1,0 +1,12 @@
+<div class="moviesMenu">
+  <div class="movie" ng-repeat="movie in movies" fl-menu="movies" fl-url="/movie/{{movie['_id']}}" fl-item="$index">
+    <div class="poster" ng-class="{noImage:!movie.image}">
+      <img ng-src="/static/posters/{{movie.image}}" ng-if="movie.image"/>
+      <div ng-if="!movie.image">{{movie.name[0]}}</div>
+    </div>
+    <div class="infos">
+      <h2>{{movie.name}}</h2>
+      <h3>{{movie.realisator}}</h3>
+    </div>
+  </div>
+</div>
